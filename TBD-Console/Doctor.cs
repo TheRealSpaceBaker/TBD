@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TBD_Console
+{
+    public class Doctor : User
+    {
+        public List<Appointment> appointments { get; set; }
+        public List<Patient> patients { get; set; }
+
+        public Doctor(int id, string name, string username, string password)
+            : base(id, name, username, password)
+        {
+
+        }
+
+        public void MakeAppointment()
+        {
+
+        }
+
+        public static List<Appointment> ShowAppointments()
+        {
+            return null; //Dal methode hier
+        }
+
+        public void CancelAppointment()
+        {
+
+        }
+    }
+
+}
