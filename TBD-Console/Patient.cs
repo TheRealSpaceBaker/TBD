@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TBD_Console
 {
-    public class Patient
+    public class Patient : User
     {
-        public CMAS CMASsession { get; set; }
+        public List<CMAS> CMASsession { get; set; }
         public Doctor Doctors { get; set; }
         public Guardian Guardians { get; set; }
 
-        public Patient(CMAS cmasSession, Doctor doctors, Guardian guardians)
+        public Patient(int id, string name, string username, string password, Doctor doctors, Guardian guardians)
+            :base(id, name, username, password)
         {
-            CMASsession = cmasSession;
             Doctors = doctors;
             Guardians = guardians;
-        }
-
-        public void addCMAS(CMAS cmasSession)
-        {
-            CMASsession = cmasSession;
         }
 
         public static List<Patient> ShowCMASes()
