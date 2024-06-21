@@ -10,12 +10,12 @@ namespace TBD_Console
     {
         public int Id { get; set; }
         public List<CMASExercise> CMASExercises { get; set; }
-
         public Patient Patient { get; set; }
 
-        public CMAS(int id, Patient patient)
+        public CMAS(int id, List<CMASExercise> cmasExercises, Patient? patient)
         {
             Id = id;
+            CMASExercises = cmasExercises;
             Patient = patient;
         }
 
