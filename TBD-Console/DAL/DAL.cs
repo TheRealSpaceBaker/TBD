@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;    
 
 namespace TBD_Console.DAL
 {
@@ -16,7 +17,50 @@ namespace TBD_Console.DAL
         // Methods CMASExercise
         public List<CMASExercise> ReadCMASExercises()
         {
-            return null;
+            List<CMASExercise> cmasExercises = new List<CMASExercise>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
+                    command.CommandText = @"
+                        SELECT 
+                            CMASExercise.Id, 
+                            Exercise.Exercise AS Exercise, 
+                            CMASExercise.Score
+                        FROM CMASExercise
+                        JOIN Exercise ON CMASExercise.Exercise = Exercise.Id";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0); // Lees het id (index 0)
+                            int exerciseId = reader.GetInt32(1); // Lees het ExerciseId (index 1)
+                            string exerciseDecription = reader.GetString(2); // Lees het ExerciseDecription (index 2)
+                            int score = reader.GetInt32(3); // Lees het Score (index 2)
+
+                            Exercise exercise = new Exercise(exerciseId, exerciseDecription);
+                            cmasExercises.Add(new CMASExercise(id, exercise, score));
+                        }
+                    }
+
+                    if (cmasExercises.Count > 0)
+                    {
+                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                    }
+                }
+            }
+
+            return cmasExercises;
         }
 
         // Methods CMAS
@@ -24,7 +68,44 @@ namespace TBD_Console.DAL
         // Methods Exercise
         public List<Exercise> ReadExercises()
         {
-            return null;
+            List<Exercise> exercises = new List<Exercise>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
+                    command.CommandText = @"
+                        SELECT Id, Description
+                        FROM Exercise";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0); // Lees het id (index 0)
+                            string decription = reader.GetString(1); // Lees het ExerciseDecription (index 2)
+
+                            Exercise exercise = new Exercise(id, decription);
+                            exercises.Add(exercise);
+                        }
+                    }
+
+                    if (exercises.Count > 0)
+                    {
+                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                    }
+                }
+            }
+
+            return exercises;
         }
 
 
@@ -49,11 +130,79 @@ namespace TBD_Console.DAL
         // Methods User
         public List<User> ReadUsers()
         {
-            return null;
+            List<User> users = new List<User>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
+                    command.CommandText = @"
+                        SELECT *
+                        FROM User";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0); // Lees het id (index 0)
+                            string name = reader.GetString(1); // Lees het name (index 1)
+                            int accesLevel = reader.GetInt32(2); // Lees het accesLevel (index 2)
+                            string username = reader.GetString(3); // Lees het username (index 3)
+                            string password = reader.GetString(4); // Lees het password (index 4)
+
+
+                        }
+                    }
+
+                    if (users.Count > 0)
+                    {
+                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                    }
+                }
+            }
+
+            return users;
         }
         public void CreateUser(User user)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+                    INSERT INTO User 
+                        (Id, Name, Acceslevel, Username, Password) 
+                    VALUES 
+                        (@UserId, @Name, @Acceslevel, @Username, @Password)";
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@UserId", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Acceslevel", user.AccesLevel);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("User successfully added to the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows were affected. The user was not added to the database.");
+                    }
+                }
+            }
         }
         public void UpdateUser(User user)
         {
