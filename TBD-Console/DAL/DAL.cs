@@ -8,7 +8,7 @@ namespace TBD_Console.DAL
 {
     public class DAL
     {
-        // connectionString = 
+        private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password=***********;Encrypt=True";
 
         // Classes nog niet aangemaakt, dus vele errors mbt het "Niet bestaan" van de classes.
 
