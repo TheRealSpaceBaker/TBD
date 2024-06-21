@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace TBD_Console.DAL
     {
         private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password=***********;Encrypt=True";
 
-        // Classes nog niet aangemaakt, dus vele errors mbt het "Niet bestaan" van de classes.
 
         // Methods CMASExercise
         public List<CMASExercise> ReadCMASExercises()
@@ -30,11 +30,45 @@ namespace TBD_Console.DAL
         // Methods Appointments K 
         public List<Appointment> ReadAppointments()
         {
+            /*
+            List<Appointment> appointments = new List<Appointment>();
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Appointments";
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            appointments.Add(new Appointment(reader.GetInt32(0), reader.GetDateTime(1), reader.GetString(2), patient, doctor));
+                        }
+                    }
+                }
+            }
+            return appointments;
+            */
             return null;
         }
+
         public void CreateAppointment(Appointment appointment)
         {
-            return;
+            /*
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Appointments (Date, Description, PatientID, DoctorID) VALUES (@Date, @Description, @PatientID, @DoctorID)";
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Date", appointment.Date);
+                    command.Parameters.AddWithValue("@Description", appointment.Description);
+                    command.Parameters.AddWithValue("@PatientID", appointment.PatientId.Id);
+                    command.Parameters.AddWithValue("@DoctorID", appointment.DoctorId.Id);
+                    command.ExecuteNonQuery();
+                }
+            } 
+            */
         }
         public void UpdateAppointment(Appointment appointment)
         {
