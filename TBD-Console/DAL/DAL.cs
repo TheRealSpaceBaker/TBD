@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBD_Console.DAL
+namespace TBD_Console.DataAccessLayer
 {
     public class DAL
     {
-        private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password=***********;Encrypt=True";
+        private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password=GoedGejat2024;Encrypt=True";
 
 
         // Methods CMASExercise
@@ -42,7 +42,7 @@ namespace TBD_Console.DAL
                     {
                         while(reader.Read())
                         {
-                            appointments.Add(new Appointment(reader.GetInt32(0), reader.GetDateTime(1), reader.GetString(2), patient, doctor));
+                           appointments.Add(new Appointment(reader.GetInt32(0), reader.GetDateTime(1), reader.GetString(2), new Patient(reader.GetInt32(3)), reader.GetInt32(4)));
                         }
                     }
                 }
@@ -53,8 +53,7 @@ namespace TBD_Console.DAL
         }
 
         public void CreateAppointment(Appointment appointment)
-        {
-            /*
+        {           
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -68,11 +67,24 @@ namespace TBD_Console.DAL
                     command.ExecuteNonQuery();
                 }
             } 
-            */
+            
         }
         public void UpdateAppointment(Appointment appointment)
         {
-            return;
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Appointments SET Date = @Date, Description = @Description, PatientID = @PatientID, DoctorID = @DoctorID WHERE ID = @AppointmentId";
+                using(SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Date", appointment.Date);
+                    command.Parameters.AddWithValue("@Description", appointment.Description);
+                    command.Parameters.AddWithValue("@PatientID", appointment.PatientId.Id);
+                    command.Parameters.AddWithValue("@DoctorID", appointment.DoctorId.Id);
+                    command.Parameters.AddWithValue("@ID", appointment.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
         public void DeleteAppointment(Appointment appointment)
         {
