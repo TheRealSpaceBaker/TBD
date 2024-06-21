@@ -17,20 +17,12 @@ namespace TBD_Console
 
         }
 
-        public void MakeAppointment()
-        {
-
-        }
-
         public static List<Appointment> ShowAppointments()
         {
             return null; //Dal methode hier
         }
 
-        public void CancelAppointment()
-        {
 
-        }
     }
 
 }
