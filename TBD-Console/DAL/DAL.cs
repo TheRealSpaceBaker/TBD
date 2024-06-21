@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;    
+using System.Data.SqlClient;
 
 namespace TBD_Console.DAL
 {
@@ -240,14 +240,22 @@ namespace TBD_Console.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "select * from Patient";
+                string query = "select * from Patient Inner Join User on Patient.UserId=User.UserId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            patients.Add(new Patient(reader["id"]));
+                            patients.Add(new Patient(
+                                Int32.Parse(reader["UserID"].ToString()),
+                                reader["Name"].ToString(),
+                                reader["Username"].ToString(),
+                                reader["Password"].ToString(),
+                                new List<CMAS>(),
+                                null,
+                                null
+                                ));
                         }
                     }
                 }
@@ -255,9 +263,20 @@ namespace TBD_Console.DAL
                 return patients;
             }
         }
-        public void CreatePatient(Patient patient)
+        public int CreatePatient(Patient patient)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Insert Into User (Name, Username, Password) Values ('{patient.Name}', '{patient.Username}', '{patient.Password}');Select SCOPE_IDENTITY()";
+                SqlCommand command = new SqlCommand(query, connection);
+                int id = Convert.ToInt32(command.ExecuteScalar());
+                query = $"Insert Into Patient (DoctorId, GuardianId, UserId) Values ({patient.Doctor.Id}, {patient.Guardian.Id}, {id})";
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+                return id;
+            }
         }
         public void UpdatePatient(Patient patient)
         {
@@ -271,15 +290,48 @@ namespace TBD_Console.DAL
         // Methods Doctor
         public List<Doctor> ReadDoctors()
         {
+            List<Doctor> doctors = new List<Doctor>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "select * from Patient Inner Join User on Patient.UserId=User.UserId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctors.Add(new Doctor(
+                                Int32.Parse(reader["UserId"].ToString()),
+                                reader["Name"].ToString(),
+                                reader["Username"].ToString(),
+                                reader["Password"].ToString()
+                                ));
+                        }
+                    }
+                }
+                connection.Close();
+                return doctors;
+            }
+        }
+        public int CreateDoctor(Doctor doctor)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Insert Into User (Name, Username, Password) Values ('{doctor.Name}', '{doctor.Username}', '{doctor.Password}');Select SCOPE_IDENTITY()";
+                SqlCommand command = new SqlCommand(query, connection);
+                int id = Convert.ToInt32(command.ExecuteScalar());
+                query = $"Insert Into Doctor (DoctorId) Values ({id})";
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+                return id;
+            }
+        }
+        public Doctor UpdateDoctor(Doctor doctor)
+        {
             return null;
-        }
-        public void CreateDoctor(Doctor doctor)
-        {
-            return;
-        }
-        public void UpdateDoctor(Doctor doctor)
-        {
-            return;
         }
         public void DeleteDoctor(Doctor doctor)
         {
@@ -287,15 +339,16 @@ namespace TBD_Console.DAL
         }
 
         //Sjablonen voor de Dal methods
-        public void CreateUpdateDeleteClass()
+        public int CreateUpdateDeleteClass()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = $"sqlquery here";
+                string query = $"Insert Into tablename (attributes) Values (values);Select SCOPE_IDENTITY()";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                int id = Convert.ToInt32(command.ExecuteScalar());
                 connection.Close();
+                return id;
             }
         }
         public List<int> ReadClass()
