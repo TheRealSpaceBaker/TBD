@@ -109,10 +109,41 @@ namespace TBD_Console.DAL
         }
 
 
-        // Methods Appointments K 
+        // Methods Appointments 
         public List<Appointment> ReadAppointments()
         {
-            return null;
+            List<Appointment> appointments = new List<Appointment>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = @"
+                        SELECT 
+                            Appointment.Id, 
+                            Appointment.PatientId,
+                            Appointment.DoctorId,
+                            Appointment.Date,
+                            Appointment.CMASId,
+                            Appointment.Description,
+                        FROM Appointment";
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0); // Lees het id (index 0)
+                            int patientId = reader.GetInt32(1); // Lees het patientId (index 1)
+                            int doctorId = reader.GetInt32(2); // Lees het doctorId (index 2)
+                            DateTime date = reader.GetDateTime(3); // Lees het date (index 3)
+                            int cmasId = reader.GetInt32(4); // Lees het cmasId (index 4)
+                            string description = reader.GetString(5); // Lees het description (index 5)
+
+                            appointments.Add(new Appointment(id, patientId, doctorId, date, cmasId, description));
+                        }
+                    }
+                }
+            }
         }
         public void CreateAppointment(Appointment appointment)
         {
