@@ -29,6 +29,14 @@ namespace TBD_Console
         {
 
         }
+        public void CancelAppointment()
+        {
+
+        }
+        public void MakeAppointment()
+        {
+
+        }
 
     }
 }
