@@ -150,11 +150,8 @@ namespace TBD_Console.DAL
                         {
                             int id = reader.GetInt32(0); // Lees het id (index 0)
                             string name = reader.GetString(1); // Lees het name (index 1)
-                            int accesLevel = reader.GetInt32(2); // Lees het accesLevel (index 2)
-                            string username = reader.GetString(3); // Lees het username (index 3)
-                            string password = reader.GetString(4); // Lees het password (index 4)
-
-
+                            string username = reader.GetString(2); // Lees het username (index 3)
+                            string password = reader.GetString(3); // Lees het password (index 4)
                         }
                     }
 
@@ -177,9 +174,9 @@ namespace TBD_Console.DAL
             {
                 string query = @"
                     INSERT INTO User 
-                        (Id, Name, Acceslevel, Username, Password) 
+                        (Id, Name, Username, Password) 
                     VALUES 
-                        (@UserId, @Name, @Acceslevel, @Username, @Password)";
+                        (@UserId, @Name, @Username, @Password)";
                 connection.Open();
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -187,7 +184,6 @@ namespace TBD_Console.DAL
 
                     command.Parameters.AddWithValue("@UserId", user.Id);
                     command.Parameters.AddWithValue("@Name", user.Name);
-                    command.Parameters.AddWithValue("@Acceslevel", user.AccesLevel);
                     command.Parameters.AddWithValue("@Username", user.Username);
                     command.Parameters.AddWithValue("@Password", user.Password);
 
