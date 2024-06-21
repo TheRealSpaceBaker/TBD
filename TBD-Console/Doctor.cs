@@ -8,8 +8,8 @@ namespace TBD_Console
 {
     public class Doctor : User
     {
-        public List<Appointment> appointments { get; set; }
-        public List<Patient> patients { get; set; }
+        public List<Appointment> Appointments { get; set; }
+        public List<Patient> Patients { get; set; }
 
         public Doctor(int id, string name, string username, string password)
             : base(id, name, username, password)

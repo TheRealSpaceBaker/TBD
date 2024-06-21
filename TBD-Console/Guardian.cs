@@ -16,9 +16,14 @@ namespace TBD_Console
         public int ParentalLockCode { get; set; }
 
 
-        public Guardian(int id, string name, string username, string password)
+        public Guardian(int id, Patient? patient, string name, string email, int phoneNumber, int parentalLockCode)
         {
-
+            Id = id;
+            Patient = patient;
+            Name = name;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            ParentalLockCode = parentalLockCode;
         }
 
         public void UnlockParentalLock(int code)

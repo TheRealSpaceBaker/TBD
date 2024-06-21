@@ -9,16 +9,18 @@ namespace TBD_Console
 {
     public class Patient : User
     {
-        public List<CMAS> CMASsession { get; set; }
-        public Doctor Doctors { get; set; }
-        public Guardian Guardians { get; set; }
+        public List<CMAS> CMASSessions { get; set; }
+        public Doctor? Doctor { get; set; }
+        public Guardian? Guardian { get; set; }
 
 
-        public Patient(int id, string name, string username, string password, Doctor doctors, Guardian guardians)
+
+        public Patient(int id, string name, string username, string password, List<CMAS> cmasSessions, Doctor? doctor, Guardian? guardian)
             :base(id, name, username, password)
         {
-            Doctors = doctors;
-            Guardians = guardians;
+            CMASSessions = cmasSessions;
+            Doctor = doctor;
+            Guardian = guardian;
         }
 
         public static List<Patient> ShowCMASes()

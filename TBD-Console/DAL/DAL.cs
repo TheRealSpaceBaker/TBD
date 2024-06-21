@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace TBD_Console.DAL
 {
     public class DAL
     {
-        private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password=***********;Encrypt=True";
+        private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password:GoedGejat2024;Encrypt=True";
 
         // Classes nog niet aangemaakt, dus vele errors mbt het "Niet bestaan" van de classes.
 
@@ -86,7 +87,24 @@ namespace TBD_Console.DAL
         // Methods Patient
         public List<Patient> ReadPatients()
         {
-            return null;
+            List<Patient> patients = new List<Patient>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "select * from Patient";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patients.Add(new Patient(reader["id"]));
+                        }
+                    }
+                }
+                connection.Close();
+                return patients;
+            }
         }
         public void CreatePatient(Patient patient)
         {
@@ -119,5 +137,38 @@ namespace TBD_Console.DAL
             return;
         }
 
+        //Sjablonen voor de Dal methods
+        public void CreateUpdateDeleteClass()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"sqlquery here";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        public List<int> ReadClass()
+        {
+            List<int> ListFilledWithObjects = new List<int>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "select * from <TableName>";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //Constructor Here
+                        }
+                    }
+                }
+                connection.Close();
+                return ListFilledWithObjects;
+            }
+        }
     }
 }
