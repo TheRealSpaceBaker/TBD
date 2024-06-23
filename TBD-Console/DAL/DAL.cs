@@ -338,19 +338,95 @@ namespace TBD_Console.DAL
         // Methods Guardian 
         public List<Guardian> ReadGuardians()
         {
-            return null;
+            List<Guardian> guardians = new List<Guardian>();
+            List<Patient> allPatients = ReadPatients();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Guardian.Id, Guardian.PatientId, Guardian.Name, Guardian.Email, Guardian.PhoneNumber, Guardian.ParentalLockCode FROM Guardian";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            int? patientId = reader.IsDBNull(1) ? null : reader.GetInt32(1);
+                            string name = reader.GetString(2);
+                            string email = reader.GetString(3);
+                            int phoneNumber = reader.GetInt32(4);
+                            int parentalLockCode = reader.GetInt32(5);
+
+                            Patient? patient = patientId.HasValue ? allPatients.FirstOrDefault(p => p.Id == patientId.Value) : null;
+
+                            guardians.Add(new Guardian(id, patient, name, email, phoneNumber, parentalLockCode));
+                        }
+                    }
+                }
+            }
+            return guardians;
         }
+
         public void CreateGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Insert Into Guardian (PatientId, Name, Email, PhoneNumber, ParentalLockCode) Values ({guardian.Patient.Id}, '{guardian.Name}', '{guardian.Email}', {guardian.PhoneNumber}, {guardian.ParentalLockCode})";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         public void UpdateGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            UPDATE Guardian
+            SET 
+                PatientId = @PatientId, 
+                Name = @Name, 
+                Email = @Email, 
+                PhoneNumber = @PhoneNumber, 
+                ParentalLockCode = @ParentalLockCode
+            WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientId", guardian.Patient?.Id ?? (object)DBNull.Value); 
+                    command.Parameters.AddWithValue("@Name", guardian.Name);
+                    command.Parameters.AddWithValue("@Email", guardian.Email);
+                    command.Parameters.AddWithValue("@PhoneNumber", guardian.PhoneNumber);
+                    command.Parameters.AddWithValue("@ParentalLockCode", guardian.ParentalLockCode);
+                    command.Parameters.AddWithValue("@Id", guardian.Id);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Guardian successfully updated in the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows were affected. The guardian was not updated in the database.");
+                    }
+                }
+            }
         }
+
         public void DeleteGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Delete From Guardian Where Id = {guardian.Id}";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
 
