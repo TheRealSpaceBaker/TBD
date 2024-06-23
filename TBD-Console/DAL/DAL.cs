@@ -12,8 +12,6 @@ namespace TBD_Console.DAL
     {
         private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password:GoedGejat2024;Encrypt=True";
 
-        // Classes nog niet aangemaakt, dus vele errors mbt het "Niet bestaan" van de classes.
-
         // Methods CMASExercise
         public List<CMASExercise> ReadCMASExercises()
         {
@@ -337,7 +335,7 @@ namespace TBD_Console.DAL
         }
 
 
-        // Methods Guardian K
+        // Methods Guardian 
         public List<Guardian> ReadGuardians()
         {
             return null;
