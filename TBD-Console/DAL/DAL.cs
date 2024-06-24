@@ -29,7 +29,7 @@ namespace TBD_Console.DAL
                     // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
                     command.CommandText = @"
                         SELECT 
-                            CMASExercise.Id, 
+                            CMASExercise.CMASExerciseId, 
                             Exercise.Exercise AS Exercise, 
                             CMASExercise.Score
                         FROM CMASExercise
@@ -51,11 +51,11 @@ namespace TBD_Console.DAL
 
                     if (cmasExercises.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS)");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -96,11 +96,11 @@ namespace TBD_Console.DAL
 
                     if (exercises.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS).");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -160,11 +160,11 @@ namespace TBD_Console.DAL
 
                     if (users.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS).");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -187,7 +187,6 @@ namespace TBD_Console.DAL
 
                     command.Parameters.AddWithValue("@UserId", user.Id);
                     command.Parameters.AddWithValue("@Name", user.Name);
-                    command.Parameters.AddWithValue("@Acceslevel", user.AccesLevel);
                     command.Parameters.AddWithValue("@Username", user.Username);
                     command.Parameters.AddWithValue("@Password", user.Password);
 
@@ -206,13 +205,58 @@ namespace TBD_Console.DAL
         }
         public void UpdateUser(User user)
         {
-            return;
-        }
-        public void DeleteUser(User user)
-        {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Update de gegevens
+                string query = @"
+                    UPDATE User 
+                        SET Name = @Name 
+                        AND Username = @Username  
+                        AND Password = @Password 
+                        WHERE Id = @UserId"; ;
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No user was found.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("User has been succesfully updated.");
+                    }
+
+                }
+            }
         }
 
+        public void DeleteUser(User user)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Verwijdert de gegevens
+                string query = "DELETE FROM User WHERE Id = @UserId ";
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         // Methods Guardian K
         public List<Guardian> ReadGuardians()
