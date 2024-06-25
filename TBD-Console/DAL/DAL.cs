@@ -109,7 +109,7 @@ namespace TBD_Console.DAL
         }
 
 
-        // Methods Appointments K 
+        // Methods Appointments 
         public List<Appointment> ReadAppointments()
         {
             return null;
@@ -210,7 +210,7 @@ namespace TBD_Console.DAL
         }
 
 
-        // Methods Guardian K
+        // Methods Guardian 
         public List<Guardian> ReadGuardians()
         {
             return null;
