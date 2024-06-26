@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -17,11 +18,14 @@ namespace TBD_Console
 
         }
 
-        public static List<Appointment> ShowAppointments()
+        public List<Appointment> ShowAppointments()
         {
-            return null; //Dal methode hier
+            return new DAL().ReadAppointments(this);
         }
-
+        public static List<Doctor> ReadDoctors()
+        {
+            return new DAL().ReadDoctors();
+        }
 
     }
 

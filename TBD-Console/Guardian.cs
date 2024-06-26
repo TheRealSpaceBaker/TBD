@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -36,6 +37,10 @@ namespace TBD_Console
             {
                 Console.WriteLine("Invalid code.");
             }
+        }
+        public static List<Guardian> ReadGuardians()
+        {
+            return new DAL().ReadGuardians();
         }
     }
 }
