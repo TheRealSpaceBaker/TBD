@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -19,6 +20,7 @@ namespace TBD_Console
 
         public static List<Exercise> ShowExercise()
         {
+            return new DAL().ShowExercise();
         }
 
         public void DoExercise()
