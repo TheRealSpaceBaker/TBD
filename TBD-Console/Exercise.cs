@@ -19,7 +19,6 @@ namespace TBD_Console
 
         public static List<Exercise> ShowExercise()
         {
-            return null; //Dal methode aanroepen
         }
 
         public void DoExercise()
