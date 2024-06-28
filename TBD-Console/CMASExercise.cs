@@ -26,8 +26,9 @@ namespace TBD_Console
                 throw new InvalidOperationException("Exercise is not set.");
             }
             return Exercise;
-            // return null; 
+             
             //Laat zien hoe de exercise uitgevoert wordt
+            // ??
         }
 
         public void DoCMASExercise()
