@@ -6,9 +6,31 @@
       xmlns:local="clr-namespace:TBD_Innovatie.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="P_Agenda">
+      Title="P_Agenda" Background="#74738E">
 
-    <Grid>
-        
-    </Grid>
+    <Canvas VerticalAlignment="Top" Height="73" Width="703" Margin="48,10,48,0">
+        <TextBlock Name="TekstTop" Text="AGENDA" FontFamily="Rubik One" FontSize="36" Foreground="#38384D" FontWeight="Black" Width="708" Height="73" Canvas.Left="10" Canvas.Top="27"/>
+        <Rectangle Name="WitBlok" HorizontalAlignment="Center" Height="336" Fill="#D9D9D9" Stroke="LightGray" VerticalAlignment="Top" Width="708" RadiusX="20" RadiusY="20" Canvas.Top="92"/>
+        <Rectangle Name="SearchBar" Fill="#9693E4" Height="23" Width="82" RadiusX="15" RadiusY="15" Canvas.Left="350" Canvas.Top="105"/>
+        <TextBox Name="Search" Width="56" Height="15" Canvas.Left="368" Canvas.Top="110" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#38384D" FontSize="11" FontFamily="Rubik One" FontWeight="Bold" Text="Filteren"/>
+        <Rectangle Name="SearchBackground" RadiusX="15" RadiusY="15" Width="309" Height="23" Fill="white" Canvas.Left="20" Canvas.Top="105"/>
+        <TextBox Name="SearchBox" Height="15" Width="275" Margin="35,110,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Text="Search..." FontFamily="Rubik One" FontSize="10" FontWeight="Light" Foreground="DarkGray"/>
+        <Rectangle Name="RefresButton" Height="23" Width="23" Fill="#9693E4" Canvas.Left="664" Canvas.Top="106" HorizontalAlignment="Left" VerticalAlignment="Center"  RadiusX="23" RadiusY="23"/>
+        <Rectangle Height="262" Width="667" Fill="DarkGray" Canvas.Left="20" Canvas.Top="147" Canvas.Right="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Name="AddButton" Height="23" Width="130" Canvas.Left="529" Canvas.Top="106" Fill="#9693E4" RadiusX="15" RadiusY="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Height="18" Width="112" Canvas.Left="541" Canvas.Top="110" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Nieuwe Gebeurtenis" FontSize="11" FontWeight="Bold" Foreground="#38384D"/>
+
+        <ListView Name="LvSearchPatient" Canvas.Left="20" Canvas.Top="147" HorizontalAlignment="Center" Height="262" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Datum" Width="113.75" DisplayMemberBinding="{Binding PatientID}"/>
+                    <GridViewColumn Header="Patiëntnaam" Width="173.75" DisplayMemberBinding="{Binding Voornaam}"/>
+                    <GridViewColumn Header="Ouder/Voogd" Width="173.75" DisplayMemberBinding="{Binding Achternaam}"/>
+                    <GridViewColumn Header="" Width="193.75" DisplayMemberBinding="{Binding Geslacht}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Canvas>
+
 </Page>
