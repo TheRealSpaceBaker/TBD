@@ -81,7 +81,7 @@ namespace TBD_Console.Data_Access
                     {
                         while (reader.Read())
                         {
-                            CMASses.Add(new CMAS(Int32.Parse(reader["Id"].ToString()), new List<CMASExercise>(), patient);
+                            CMASses.Add(new CMAS(Int32.Parse(reader["Id"].ToString()), new List<CMASExercise>(), patient));
                         }
                     }
                 }
