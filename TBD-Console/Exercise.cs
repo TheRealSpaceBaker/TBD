@@ -20,12 +20,12 @@ namespace TBD_Console
 
         public static List<Exercise> ShowExercise()
         {
-            return new DAL().ShowExercise();
+            return new DAL().ReadExercises();
         }
 
         public void DoExercise()
         {
-
+            // ook womp womp (Er wordt aan gewerkt)
         }
     }
 }
