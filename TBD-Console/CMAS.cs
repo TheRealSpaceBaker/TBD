@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace TBD_Console
 {
@@ -19,14 +21,23 @@ namespace TBD_Console
             Patient = patient;
         }
 
-        public void AddScore()
+        public void AddScore(int exerciseId, int score)
         {
-            
+            var exercise = CMASExercises.FirstOrDefault(e => e.Id == exerciseId);
+
+            if (exercise != null)
+            {
+                exercise.Score = score;
+            }
+            else
+            {
+                Console.WriteLine("Exercise not found.");
+            }
         }
 
-        public static List<CMAS> ShowResults()
+        public static List<CMAS> ShowResults(Patient patient)
         {
-            return null; //Dal methode aanroepen
+            return new DAL().ReadCMASses(patient);
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -19,12 +20,12 @@ namespace TBD_Console
 
         public static List<Exercise> ShowExercise()
         {
-            return null; //Dal methode aanroepen
+            return new DAL().ReadExercises();
         }
 
         public void DoExercise()
         {
-
+            // ook womp womp (Er wordt aan gewerkt)
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -27,15 +28,15 @@ namespace TBD_Console
 
         public void FillInData()
         {
-
+            // womp womp 
         }
-        public void CancelAppointment()
+        public void CancelAppointment(Appointment appointment)
         {
-
+            new DAL().DeleteAppointment(this);
         }
-        public void MakeAppointment()
+        public void MakeAppointment(Appointment appointment)
         {
-
+            new DAL().CreateAppointment(this);
         }
 
     }
