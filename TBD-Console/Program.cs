@@ -1,4 +1,6 @@
-﻿namespace TBD_Console
+﻿using TBD_Console.Data_Access;
+
+namespace TBD_Console
 {
     public class Program
     {
@@ -7,7 +9,7 @@
             Console.WriteLine("Hello, World!");
 
             // Create a new instance of the DAL class
-            DAL.DAL dal = new DAL.DAL();
+            DAL dal = new DAL();
 
             // Read all appointments from the database
             List<Appointment> appointments = dal.ReadAppointments();

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using TBD_Console;
 
 namespace TBD_Console.Data_Access
 {
@@ -84,34 +86,7 @@ namespace TBD_Console.Data_Access
             }
         }
 
-            List<CMAS> cmasList = new List<CMAS>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = @"
-            SELECT CMAS.Id, CMAS.PatientId
-            FROM CMAS
-            JOIN Patient ON CMAS.PatientId = Patient.Id";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int cmasId = reader.GetInt32(0);
-                            int patientId = reader.GetInt32(1); // Lees het patientId (index 1)
-                            Patient? patient = allPatients.FirstOrDefault(p => p.Id == patientId);
-
-                            CMAS cmas = new CMAS(cmasId,CMASExercises, patient);
-                            cmasList.Add(cmas);
-                        }
-                    }
-                }
-            }
-
-            return cmasList;
-        }
+        
 
         // Methods Exercise
         public List<Exercise> ReadExercises()
@@ -197,7 +172,7 @@ namespace TBD_Console.Data_Access
 
                             Doctor doctor = allDoctors.Find(d => d.Id == doctorId);
                             Patient patient = allPatients.Find(p => p.Id == patientId);
-                            CMAS cmas = ReadCMAS().Find(c => c.Id == cmasId);
+                            CMAS cmas = ReadCMASses(patient).Find(c => c.Id == cmasId);
 
                             appointments.Add(new Appointment(id, patient, doctor, date, cmas, description));
                         }
