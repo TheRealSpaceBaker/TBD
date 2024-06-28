@@ -12,12 +12,6 @@ namespace TBD_Console.Data_Access
     {
         private string connectionString = "Data Source=casus-tbd.database.windows.net;Initial Catalog=\"TBD Database\";Persist Security Info=True;User ID=TBDAdmin;Password:GoedGejat2024;Encrypt=True";
 
-        public DAL()
-        {
-            
-        }
-        // Classes nog niet aangemaakt, dus vele errors mbt het "Niet bestaan" van de classes.
-
         // Methods CMASExercise
         public List<CMASExercise> ReadCMASExercises()
         {
@@ -33,7 +27,7 @@ namespace TBD_Console.Data_Access
                     // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
                     command.CommandText = @"
                         SELECT 
-                            CMASExercise.Id, 
+                            CMASExercise.CMASExerciseId, 
                             Exercise.Exercise AS Exercise, 
                             CMASExercise.Score
                         FROM CMASExercise
@@ -55,11 +49,11 @@ namespace TBD_Console.Data_Access
 
                     if (cmasExercises.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS)");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -88,6 +82,35 @@ namespace TBD_Console.Data_Access
                 connection.Close();
                 return CMASses;
             }
+        }
+
+            List<CMAS> cmasList = new List<CMAS>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            SELECT CMAS.Id, CMAS.PatientId
+            FROM CMAS
+            JOIN Patient ON CMAS.PatientId = Patient.Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int cmasId = reader.GetInt32(0);
+                            int patientId = reader.GetInt32(1); // Lees het patientId (index 1)
+                            Patient? patient = allPatients.FirstOrDefault(p => p.Id == patientId);
+
+                            CMAS cmas = new CMAS(cmasId,CMASExercises, patient);
+                            cmasList.Add(cmas);
+                        }
+                    }
+                }
+            }
+
+            return cmasList;
         }
 
         // Methods Exercise
@@ -121,11 +144,11 @@ namespace TBD_Console.Data_Access
 
                     if (exercises.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS).");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -134,26 +157,116 @@ namespace TBD_Console.Data_Access
         }
 
 
-        // Methods Appointments K 
+        // Methods Appointments 
         public List<Appointment> ReadAppointments()
         {
-            return null;
-        }
-        public List<Appointment> ReadAppointments(Doctor doctor)
-        {
-            return null;
+            List<Doctor> allDoctors = ReadDoctors();
+            List<Patient> allPatients = ReadPatients();
+
+
+            List<Appointment> appointments = new List<Appointment>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    // ChatGPT: Pas de query aan om alle records op te halen zonder parameters
+                    command.CommandText = @"
+                        SELECT 
+                            Appointment.Id, 
+                            Appointment.PatientId, 
+                            Appointment.DoctorId, 
+                            Appointment.Date, 
+                            Appointment.CMASId, 
+                            Appointment.Description
+                        FROM Appointment";
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0); // Lees het id (index 0)
+                            int patientId = reader.GetInt32(1); // Lees het patientId (index 1)
+                            int doctorId = reader.GetInt32(2); // Lees het doctorId (index 2)
+                            DateTime date = reader.GetDateTime(3); // Lees het date (index 3)
+                            int cmasId = reader.GetInt32(4); // Lees het cmasId (index 4)
+                            string description = reader.GetString(5); // Lees het description (index 5)
+
+                            Doctor doctor = allDoctors.Find(d => d.Id == doctorId);
+                            Patient patient = allPatients.Find(p => p.Id == patientId);
+                            CMAS cmas = ReadCMAS().Find(c => c.Id == cmasId);
+
+                            appointments.Add(new Appointment(id, patient, doctor, date, cmas, description));
+                        }
+                        return appointments;
+                    }
+
+                }
+            }
         }
         public void CreateAppointment(Appointment appointment)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Insert Into Appointment (PatientId, DoctorId, Date, CMASId, Description) Values ({appointment.Patient.Id}, {appointment.Doctor.Id}, '{appointment.Date}', {appointment.CMAS.Id}, '{appointment.Description}')";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         public void UpdateAppointment(Appointment appointment)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                // SQL query to update an appointment. Assumes all fields except ID can be updated.
+                string query = @"
+            UPDATE Appointment
+            SET 
+                PatientId = @PatientId, 
+                DoctorId = @DoctorId, 
+                Date = @Date, 
+                CMASId = @CMASId, 
+                Description = @Description
+            WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@PatientId", appointment.Patient.Id);
+                    command.Parameters.AddWithValue("@DoctorId", appointment.Doctor.Id);
+                    command.Parameters.AddWithValue("@Date", appointment.Date);
+                    command.Parameters.AddWithValue("@CMASId", appointment.CMAS.Id);
+                    command.Parameters.AddWithValue("@Description", appointment.Description);
+                    command.Parameters.AddWithValue("@Id", appointment.Id);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Appointment successfully updated in the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows were affected. The appointment was not updated in the database.");
+                    }
+                }
+            }
         }
         public void DeleteAppointment(Appointment appointment)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Delete From Appointment Where Id = {appointment.Id}";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }           
         }
 
         // Methods User
@@ -186,11 +299,11 @@ namespace TBD_Console.Data_Access
 
                     if (users.Count > 0)
                     {
-                        Console.WriteLine("Gegevens zijn gevonden in de database (SSMS).");
+                        Console.WriteLine("Data was found in the database (SSMS).");
                     }
                     else
                     {
-                        Console.WriteLine("Geen overeenkomende gegevens gevonden in de database (SSMS).");
+                        Console.WriteLine("No matching data found in the database (SSMS).");
                     }
                 }
             }
@@ -231,30 +344,151 @@ namespace TBD_Console.Data_Access
         }
         public void UpdateUser(User user)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Update de gegevens
+                string query = @"
+                    UPDATE User 
+                        SET Name = @Name 
+                        AND Username = @Username  
+                        AND Password = @Password 
+                        WHERE Id = @UserId"; ;
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No user was found.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("User has been succesfully updated.");
+                    }
+
+                }
+            }
         }
+
         public void DeleteUser(User user)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //Verwijdert de gegevens
+                string query = "DELETE FROM User WHERE Id = @UserId ";
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", user.Id);
+                    command.Parameters.AddWithValue("@Name", user.Name);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
-
-        // Methods Guardian K
+        // Methods Guardian 
         public List<Guardian> ReadGuardians()
         {
-            return null;
+            List<Guardian> guardians = new List<Guardian>();
+            List<Patient> allPatients = ReadPatients();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT Guardian.Id, Guardian.PatientId, Guardian.Name, Guardian.Email, Guardian.PhoneNumber, Guardian.ParentalLockCode FROM Guardian";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            int? patientId = reader.IsDBNull(1) ? null : reader.GetInt32(1);
+                            string name = reader.GetString(2);
+                            string email = reader.GetString(3);
+                            int phoneNumber = reader.GetInt32(4);
+                            int parentalLockCode = reader.GetInt32(5);
+
+                            Patient? patient = patientId.HasValue ? allPatients.FirstOrDefault(p => p.Id == patientId.Value) : null;
+
+                            guardians.Add(new Guardian(id, patient, name, email, phoneNumber, parentalLockCode));
+                        }
+                    }
+                }
+            }
+            return guardians;
         }
+
         public void CreateGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Insert Into Guardian (PatientId, Name, Email, PhoneNumber, ParentalLockCode) Values ({guardian.Patient.Id}, '{guardian.Name}', '{guardian.Email}', {guardian.PhoneNumber}, {guardian.ParentalLockCode})";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         public void UpdateGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"
+            UPDATE Guardian
+            SET 
+                PatientId = @PatientId, 
+                Name = @Name, 
+                Email = @Email, 
+                PhoneNumber = @PhoneNumber, 
+                ParentalLockCode = @ParentalLockCode
+            WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientId", guardian.Patient?.Id ?? (object)DBNull.Value); 
+                    command.Parameters.AddWithValue("@Name", guardian.Name);
+                    command.Parameters.AddWithValue("@Email", guardian.Email);
+                    command.Parameters.AddWithValue("@PhoneNumber", guardian.PhoneNumber);
+                    command.Parameters.AddWithValue("@ParentalLockCode", guardian.ParentalLockCode);
+                    command.Parameters.AddWithValue("@Id", guardian.Id);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Guardian successfully updated in the database.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows were affected. The guardian was not updated in the database.");
+                    }
+                }
+            }
         }
+
         public void DeleteGuardian(Guardian guardian)
         {
-            return;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"Delete From Guardian Where Id = {guardian.Id}";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
 
