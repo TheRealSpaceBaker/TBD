@@ -20,7 +20,17 @@ namespace TBD_Console
 
         public List<Appointment> ShowAppointments()
         {
-            return new DAL().ReadAppointments(this);
+            if (Appointments[0] == null)
+            {
+                foreach (Appointment appointment in new DAL().ReadAppointments())
+                {
+                    if (appointment.Doctor == this)
+                    {
+                        Appointments.Add(appointment);
+                    }
+                }
+            }
+            return Appointments;
         }
         public static List<Doctor> ReadDoctors()
         {
