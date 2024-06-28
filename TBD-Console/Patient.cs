@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
@@ -23,9 +24,14 @@ namespace TBD_Console
             Guardian = guardian;
         }
 
-        public static List<Patient> ShowCMASes()
+        public List<CMAS> ReadCMASses()
         {
-            return new List<Patient>(); //Dal methode hier
+            return new DAL().ReadCMASses(this);
+        }
+        public static List<Patient> ReadPatients()
+        {
+            DAL dal = new DAL();
+            return dal.ReadPatients();
         }
     }
 }

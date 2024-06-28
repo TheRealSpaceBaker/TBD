@@ -35,7 +35,7 @@ namespace TBD_Console
 
         public void LogOut()
         {
-
+            Console.WriteLine("Logged out succesfully");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
-namespace TBD_Console.DAL
+namespace TBD_Console.Data_Access
 {
     public class DAL
     {
@@ -62,10 +62,27 @@ namespace TBD_Console.DAL
         }
 
         // Methods CMAS
-        public List<CMAS> ReadCMAS()
+        public List<CMAS> ReadCMASses(Patient patient)
         {
-            List<Patient> allPatients = ReadPatients();
-            List<CMASExercise> CMASExercises = ReadCMASExercises();
+            List<CMAS> CMASses = new List<CMAS>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"select * from CMAS Where PatientId = {patient.Id}";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            CMASses.Add(new CMAS(Int32.Parse(reader["Id"].ToString()), new List<CMASExercise>(), patient));
+                        }
+                    }
+                }
+                connection.Close();
+                return CMASses;
+            }
+        }
 
             List<CMAS> cmasList = new List<CMAS>();
             using (SqlConnection connection = new SqlConnection(connectionString))
