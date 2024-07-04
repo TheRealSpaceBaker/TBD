@@ -18,7 +18,7 @@
         <Rectangle Name="RefresButton" Height="23" Width="23" Fill="#9693E4" Canvas.Left="664" Canvas.Top="106" HorizontalAlignment="Left" VerticalAlignment="Center"  RadiusX="23" RadiusY="23"/>
         <Rectangle Height="262" Width="667" Fill="DarkGray" Canvas.Left="20" Canvas.Top="147" Canvas.Right="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-        <ListView Name="LvSearchPatient" Canvas.Left="20" Canvas.Top="147" HorizontalAlignment="Left" Height="262" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="663">
+        <ListView Name="LvSearchPatient" Canvas.Left="20" Canvas.Top="147" HorizontalAlignment="Left" Height="262" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="663" SelectionChanged="LvSearchPatient_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" Width="33.4" />
