@@ -24,6 +24,7 @@
         <TextBlock Name="Datum" Text="DD/MM/YYYY" Foreground="#38384C" FontSize="32" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="16" Canvas.Top="355"/>
         <Rectangle Name="Divider" Fill="#38384C" Height="50" Width="1" Canvas.Left="272" Canvas.Top="342"/>
         <TextBlock Name="StarMap" Text="NAAR STARMAP" Foreground="#38384C" FontSize="14" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="295" Canvas.Top="362" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Polygon Points="0,0 16,10, 0,20" Fill="#38384C" Canvas.Left="429" Canvas.Top="360" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
         <Rectangle Name="SearchBackground" RadiusX="15" RadiusY="15" Width="151" Height="40" Fill="#8CD9A1" Canvas.Left="543" Canvas.Top="349" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <TextBox Name="SearchBox" Height="20" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Text="PROFIEL BEKIJKEN" FontFamily="Rubik One" FontSize="14" FontWeight="Bold" Foreground="#384D39" Canvas.Left="551" Canvas.Top="359" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.498,0"/>
