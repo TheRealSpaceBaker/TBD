@@ -11,10 +11,42 @@
     <Canvas VerticalAlignment="Top" Height="73" Width="703" Margin="48,10,48,0">
         <Rectangle Name="WitBlok" HorizontalAlignment="Center" Height="404" Fill="#D9D9D9" Stroke="LightGray" VerticalAlignment="Top" Width="708" RadiusX="20" RadiusY="20" Canvas.Top="10" Canvas.Left="-2"/>
 
+        <Rectangle Name="SearchBar" Fill="#E49393" Height="30" Width="89" RadiusX="15" RadiusY="15" Canvas.Left="582" Canvas.Top="33" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox Name="Search" Width="56" Height="16" Canvas.Left="606" Canvas.Top="40" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#38384D" FontSize="11" FontFamily="Rubik One" FontWeight="Bold" Text="Terug"/>
         <Rectangle Name="Line" Height="2" Width="680" Canvas.Left="13" Canvas.Top="73" Fill="#000000" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBlock Name="TekstTop" Text="Patiëntnaam" FontFamily="Rubik One" FontSize="43" Foreground="#38384D" FontWeight="UltraBold" Width="708" Height="41" Canvas.Left="26" Canvas.Top="27" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
+        <Rectangle Height="87" Width="200" Canvas.Left="26" Canvas.Top="96" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="10" RadiusY="10" Fill="DarkGray"/>
+        <TextBlock Name="Patientinfo" Text="Patiëntinfo" Canvas.Left="38" Canvas.Top="102" Foreground="#38384D" FontSize="13" FontWeight="Black" FontFamily="Rubik One" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle x:Name="Line_Copy" Height="1" Width="177" Canvas.Left="36" Canvas.Top="117" Fill="#000000" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Name="Voornaam" Text="Voornaam" Foreground="#000000" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="36" Canvas.Top="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Name="Achternaam" Text="Achternaam" Foreground="#000000" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="36" Canvas.Top="140" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock Name="OuderVoogd" Text="Ouder/Voogd" Foreground="#000000" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="36" Canvas.Top="157" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock Name="voornaam" Text="voornaam" Foreground="#d3d3d3" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="142" Canvas.Top="123"/>
+        <TextBlock Name="achternaam" Text="achternaam" Foreground="#d3d3d3" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="142" Canvas.Top="140"/>
+        <TextBlock Name="oudervoogd" Text="ouder/voogd" Foreground="#d3d3d3" FontSize="10" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="142" Canvas.Top="157"/>
 
+        <Rectangle Height="300" Width="200" Canvas.Left="267" Canvas.Top="96" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="10" RadiusY="10" Fill="DarkGray"/>
+        <ListView Name="Date" Canvas.Left="267" Canvas.Top="101" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="200" SelectionChanged="LvSearchPatient_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="33.4" />
+                    <GridViewColumn Header="Datum" Width="80.4" />
+                    <GridViewColumn Header="Tijd" Width="80.4" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Rectangle Height="300" Width="200" Canvas.Left="493" Canvas.Top="96" HorizontalAlignment="Left" VerticalAlignment="Center" RadiusX="10" RadiusY="10" Fill="DarkGray"/>
+        <ListView Name="Exercise" Canvas.Left="493" Canvas.Top="102" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="200" SelectionChanged="LvSearchPatient_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="33.4" />
+                    <GridViewColumn Header="Exercise" Width="80.4" />
+                    <GridViewColumn Header="Score" Width="80.4" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Canvas>
 </Page>

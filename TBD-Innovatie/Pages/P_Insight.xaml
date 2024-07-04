@@ -29,7 +29,22 @@
         <TextBox Name="Search" Width="56" Height="15" Canvas.Left="270" Canvas.Top="110" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#38384D" FontSize="11" FontFamily="Rubik One" FontWeight="Bold" Text="Zoeken"/>
         <Rectangle Name="SearchBackground" RadiusX="15" RadiusY="15" Width="223" Height="23" Fill="white" Canvas.Left="20" Canvas.Top="105" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <TextBox Name="SearchBox" Height="15" Width="189" Background="{x:Null}" BorderBrush="{x:Null}" Text="Search..." FontFamily="Rubik One" FontSize="10" FontWeight="Light" Foreground="DarkGray" Canvas.Left="35" Canvas.Top="110" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Rectangle Name="RefresButton" Height="23" Width="23" Fill="#9693E4" Canvas.Left="356" Canvas.Top="106" HorizontalAlignment="Left" VerticalAlignment="Center"  RadiusX="23" RadiusY="23"/>
+
+        <Rectangle Name="RefresButton" Height="23" Width="23" Fill="#9693E4" Canvas.Left="357" Canvas.Top="107" HorizontalAlignment="Left" VerticalAlignment="Top"  RadiusX="23" RadiusY="23"/>
+        <Rectangle Height="13" Width="13" Fill="Black" RadiusX="10" RadiusY="10" Canvas.Left="362" Canvas.Top="112"/>
+        <Rectangle Height="11" Width="11" Fill="#9693E4" RadiusX="10" RadiusY="10" Canvas.Left="363" Canvas.Top="113" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.413,0.36"/>
+        <Rectangle Height="2" Width="6" Fill="#9693E4" Canvas.Left="370" Canvas.Top="117" RenderTransformOrigin="0.317,0.347" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Polygon Points="0,0 4,2.5, 0,5" Stroke="Black" Fill="Black" Canvas.Left="368" Canvas.Top="114" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="11" Width="9" >
+            <Polygon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="49.026"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Polygon.RenderTransform>
+        </Polygon>
+
         <Rectangle Height="262" Width="359" Fill="DarkGray" Canvas.Left="20" Canvas.Top="147" Canvas.Right="20" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <ListView Name="LvSearchPatient" Canvas.Left="20" Canvas.Top="147" HorizontalAlignment="Left" Height="262" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="359">

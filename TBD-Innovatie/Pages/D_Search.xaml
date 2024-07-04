@@ -11,11 +11,28 @@
     <Canvas VerticalAlignment="Top" Height="73" Width="703" Margin="48,10,48,0">
         <TextBlock Name="TekstTop" Text="PATIËNTEN ZOEKSYSTEEM" FontFamily="Rubik One" FontSize="36" Foreground="#38384D" FontWeight="Black" Width="708" Height="73" Canvas.Left="10" Canvas.Top="27"/>
         <Rectangle Name="WitBlok" HorizontalAlignment="Center" Height="336" Fill="#D9D9D9" Stroke="LightGray" VerticalAlignment="Top" Width="708" RadiusX="20" RadiusY="20" Canvas.Top="92"/>
+
         <Rectangle Name="SearchBar" Fill="#9693E4" Height="23" Width="82" RadiusX="15" RadiusY="15" Canvas.Left="350" Canvas.Top="105"/>
         <TextBox Name="Search" Width="56" Height="15" Canvas.Left="368" Canvas.Top="110" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#38384D" FontSize="11" FontFamily="Rubik One" FontWeight="Bold" Text="Zoeken"/>
+
         <Rectangle Name="SearchBackground" RadiusX="15" RadiusY="15" Width="309" Height="23" Fill="white" Canvas.Left="20" Canvas.Top="105"/>
         <TextBox Name="SearchBox" Height="15" Width="275" Margin="35,110,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Text="Search..." FontFamily="Rubik One" FontSize="10" FontWeight="Light" Foreground="DarkGray"/>
+
         <Rectangle Name="RefresButton" Height="23" Width="23" Fill="#9693E4" Canvas.Left="664" Canvas.Top="106" HorizontalAlignment="Left" VerticalAlignment="Center"  RadiusX="23" RadiusY="23"/>
+        <Rectangle Height="13" Width="13" Fill="Black" RadiusX="10" RadiusY="10" Canvas.Left="669" Canvas.Top="111"/>
+        <Rectangle Height="11" Width="11" Fill="#9693E4" RadiusX="10" RadiusY="10" Canvas.Left="670" Canvas.Top="112" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.413,0.36"/>
+        <Rectangle Height="2" Width="6" Fill="#9693E4" Canvas.Left="677" Canvas.Top="116" RenderTransformOrigin="0.317,0.347" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Polygon Points="0,0 4,2.5, 0,5" Stroke="Black" Fill="Black" Canvas.Left="675" Canvas.Top="113" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Height="11" Width="9" >
+            <Polygon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="49.026"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Polygon.RenderTransform>
+        </Polygon>
+
         <Rectangle Height="262" Width="667" Fill="DarkGray" Canvas.Left="20" Canvas.Top="147" Canvas.Right="20" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <ListView Name="LvSearchPatient" Canvas.Left="20" Canvas.Top="147" HorizontalAlignment="Left" Height="262" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="663" SelectionChanged="LvSearchPatient_SelectionChanged">
