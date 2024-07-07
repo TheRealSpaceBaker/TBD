@@ -22,6 +22,47 @@ namespace TBD_Innovatie
         public PatientWindow()
         {
             InitializeComponent();
+            // navigate to the P_Home page
+            NavigateToPage("P_Home");
+        }
+        private void NavigateToPage(string pageName)
+        {
+            MainFrame.Source = new Uri($"Pages/{pageName}.xaml", UriKind.Relative);
+        }
+
+        private void HomeNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the P_Home page
+            NavigateToPage("P_Home");
+        }
+
+        private void StarMapNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the P_StarMap page
+            NavigateToPage("P_StarMap");
+
+        }
+
+        private void ProfileNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the P_Profile page
+            NavigateToPage("P_Profile");
+
+        }
+
+        private void AgendaNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the P_Agenda page
+            NavigateToPage("P_Agenda");
+
+        }
+
+
+        private void InsightNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the P_Insight page
+            NavigateToPage("P_Insight");
+
         }
     }
 }

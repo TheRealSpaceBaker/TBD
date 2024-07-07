@@ -22,6 +22,30 @@ namespace TBD_Innovatie
         public DoctorWindow()
         {
             InitializeComponent();
+            // navigate to the D_Home page
+            NavigateToPage("D_Home");
+        }
+        private void NavigateToPage(string pageName)
+        {
+            MainFrame.Source = new Uri($"Pages/{pageName}.xaml", UriKind.Relative);
+        }
+
+        private void HomeNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the D_Home page
+            NavigateToPage("D_Home");
+        }
+
+        private void SearchNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the D_Search page
+            NavigateToPage("D_Search");
+        }
+
+        private void AgendaNav_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to the D_Agenda page
+            NavigateToPage("D_Agenda");
         }
     }
 }

@@ -5,10 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TBD_Innovatie.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="M_Login">
 
     <Grid>
-        
+        <Rectangle HorizontalAlignment="Center" Height="770" VerticalAlignment="Center" Width="600" RadiusX="15" RadiusY="15" Fill="#B210121F"/>
+        <Button Name="patientButtonTemp" Content="patient" HorizontalAlignment="Left" Margin="1530,785,0,0" VerticalAlignment="Top" Click="patientButtonTemp_Click" />
+        <Button Name="doctorButtonTemp" Content="doctor" HorizontalAlignment="Left" Margin="1530,810,0,0" VerticalAlignment="Top" Click="doctorButtonTemp_Click" />
+
+        <Label Content="INLOGGEN" HorizontalAlignment="Left" Margin="720,225,0,0" VerticalAlignment="Top" Height="95" Width="520" FontFamily="Segoe UI Black" Foreground="#FF63A6FF" FontSize="72" HorizontalContentAlignment="Left" />
+        <Label Content="TBD RUIMTEVAART" HorizontalAlignment="Left" Margin="720,205,0,0" VerticalAlignment="Top" Height="45" Width="520" FontFamily="Segoe UI Black" Foreground="#FF63A6FF" FontSize="24" HorizontalContentAlignment="Left" />
+
+        <TextBox Name="LoginEmail" HorizontalAlignment="Center" Height="55" Margin="0,385,0,0" TextWrapping="Wrap" Text="E-mailadres" VerticalAlignment="Top" Width="480" Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,3" SelectionBrush="#FF4D61DA" VerticalContentAlignment="Center" Foreground="#4CFFFFFF" FontSize="14" IsKeyboardFocusedChanged="LoginEmail_IsKeyboardFocusedChanged" />
+        <TextBox Name="LoginPassword" HorizontalAlignment="Center" Height="55" Margin="0,485,0,0" TextWrapping="Wrap" Text="Wachtwoord" VerticalAlignment="Top" Width="480" Background="Transparent" BorderBrush="White" BorderThickness="0,0,0,3" SelectionBrush="#FF4D61DA" VerticalContentAlignment="Center" Foreground="#4CFFFFFF" FontSize="14" IsKeyboardFocusedChanged="LoginPassword_IsKeyboardFocusedChanged" />
+
+        <Rectangle Name="LoginButton" HorizontalAlignment="Left" Height="48" Margin="725,586,0,0" VerticalAlignment="Top" Width="300" Fill="#FF11151F" RadiusX="5" RadiusY="5" Cursor="Hand" MouseEnter="LoginButton_MouseEnter" MouseLeave="LoginButton_MouseLeave" MouseDown="LoginButton_MouseDown" />
+        <TextBlock Name="LoginButtonLabel" HorizontalAlignment="Left" Margin="833,594,0,0" TextWrapping="Wrap" Text="LOG IN" VerticalAlignment="Top" Foreground="#B2FFFFFF" FontFamily="Segoe UI Black" FontWeight="Bold" FontSize="24" IsHitTestVisible="False"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="725,639,0,0" TextWrapping="Wrap" Text="Wachtwoord vergeten? Klik " VerticalAlignment="Top" Foreground="White" FontStyle="Italic" FontSize="14"/>
+        <TextBlock Name="ForgotPasswordPageButton" HorizontalAlignment="Left" Margin="894,639,0,0" TextWrapping="Wrap" Text="hier!" VerticalAlignment="Top" Foreground="#FF7ABCFF" FontStyle="Italic" FontSize="14" FontWeight="Bold" Cursor="Hand" MouseDown="ForgotPasswordPageButton_MouseDown" />
+
     </Grid>
 </Page>

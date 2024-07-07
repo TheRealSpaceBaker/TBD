@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TBD_Innovatie"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" Background="#FF080F39">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/158725403_d1d16724-31e6-47e9-95a7-3f1048a2e7eb.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
 
+
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
+    
 </Window>
