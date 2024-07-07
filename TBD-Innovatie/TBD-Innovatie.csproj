@@ -10,26 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="14350820_5471985.jpg" />
-    <None Remove="14350825_5473791.jpg" />
-    <None Remove="14455868_5471740.jpg" />
     <None Remove="158725403_d1d16724-31e6-47e9-95a7-3f1048a2e7eb.jpg" />
-    <None Remove="72104193_9742184.jpg" />
     <None Remove="72657853_9762374.jpg" />
-    <None Remove="9762356.jpg" />
-    <None Remove="space-background-with-rocket-free-vector.jpg" />
     <None Remove="wallpapersden.com_abstract-purple-shape_2560x1300.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="14350820_5471985.jpg" />
-    <Resource Include="14350825_5473791.jpg" />
-    <Resource Include="14455868_5471740.jpg" />
     <Resource Include="158725403_d1d16724-31e6-47e9-95a7-3f1048a2e7eb.jpg" />
-    <Resource Include="72104193_9742184.jpg" />
     <Resource Include="72657853_9762374.jpg" />
-    <Resource Include="9762356.jpg" />
-    <Resource Include="space-background-with-rocket-free-vector.jpg" />
     <Resource Include="wallpapersden.com_abstract-purple-shape_2560x1300.jpg" />
   </ItemGroup>
 
