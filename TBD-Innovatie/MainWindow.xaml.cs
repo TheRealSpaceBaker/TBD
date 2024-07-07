@@ -19,6 +19,12 @@ namespace TBD_Innovatie
         public MainWindow()
         {
             InitializeComponent();
+            // navigate to the M_Login page
+            NavigateToPage("M_Login");
+        }
+        private void NavigateToPage(string pageName)
+        {
+            MainFrame.Source = new Uri($"Pages/{pageName}.xaml", UriKind.Relative);
         }
     }
 }

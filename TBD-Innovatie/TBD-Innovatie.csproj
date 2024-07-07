@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="158725403_d1d16724-31e6-47e9-95a7-3f1048a2e7eb.jpg" />
+    <None Remove="72657853_9762374.jpg" />
+    <None Remove="wallpapersden.com_abstract-purple-shape_2560x1300.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="158725403_d1d16724-31e6-47e9-95a7-3f1048a2e7eb.jpg" />
+    <Resource Include="72657853_9762374.jpg" />
+    <Resource Include="wallpapersden.com_abstract-purple-shape_2560x1300.jpg" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
