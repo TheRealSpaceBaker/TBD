@@ -8,7 +8,108 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="P_Level">
 
-    <Grid>
-        
-    </Grid>
+    <Canvas>
+        <Rectangle Width="800" Height="450">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF9078" Offset="0.0" />
+                    <GradientStop Color="#E4AB3D" Offset="0.35" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Width="800" Height="450">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF9078" Offset="0.0" />
+                    <GradientStop Color="#E4AB3D" Offset="0.35" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle Name="BottomRectangle" Fill="#FFC178" Height="199" Width="800" HorizontalAlignment="Center" Canvas.Top="251" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFC178" Height="206" Width="76" Canvas.Left="65" Canvas.Top="76" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFC178" Height="143" Width="76" Canvas.Left="149" Canvas.Top="139" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#FFC178" Height="231" Width="76" Canvas.Left="233" Canvas.Top="51" RadiusX="5" RadiusY="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#FFC178" Height="134" Width="76" Canvas.Left="690" Canvas.Top="148" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#FFC178" Height="97" Width="76" Canvas.Left="606" Canvas.Top="185" RadiusX="5" RadiusY="5" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Rectangle Fill="#FC9570"  Height="2" Width="400" Canvas.Left="133" Canvas.Top="285"/>
+        <Rectangle Fill="#FC9570"  Height="2" Width="49" Canvas.Left="579" Canvas.Top="297" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="22.282"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FC9570"  Height="2" Width="45" Canvas.Left="625" Canvas.Top="324" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="46.065"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FC9570"  Height="2" Width="49" Canvas.Left="615" Canvas.Top="355" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-21.286"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FC9570"  Height="2" Width="338" Canvas.Left="271" Canvas.Top="368" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#FC9570"  Height="2" Width="61" Canvas.Left="198" Canvas.Top="378" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-18.939"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FC9570"  Height="2" Width="52" Canvas.Left="191" Canvas.Top="409" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="23.236"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="#FC9570"  Height="2" Width="60" Canvas.Left="261" Canvas.Top="427" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="10.139"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="68" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="182" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="291" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="406" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="519" Canvas.Top="277" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="594" Canvas.Top="302" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="629" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="574" Canvas.Top="360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="476" Canvas.Top="360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="365" Canvas.Top="360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="239" Canvas.Top="360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="165" Canvas.Top="386" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="221" Canvas.Top="409" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle Fill="#B46755" Height="18" Width="70" RadiusX="37" RadiusY="60" Canvas.Left="305" Canvas.Top="426" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+    </Canvas>
 </Page>

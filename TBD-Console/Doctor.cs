@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBD_Console.Data_Access;
 
 namespace TBD_Console
 {
     public class Doctor : User
     {
-        public List<Appointment> appointments { get; set; }
-        public List<Patient> patients { get; set; }
+        public List<Appointment> Appointments { get; set; }
+        public List<Patient> Patients { get; set; }
 
         public Doctor(int id, string name, string username, string password)
             : base(id, name, username, password)
@@ -17,20 +18,25 @@ namespace TBD_Console
 
         }
 
-        public void MakeAppointment()
+        public List<Appointment> ShowAppointments()
         {
-
+            if (Appointments[0] == null)
+            {
+                foreach (Appointment appointment in new DAL().ReadAppointments())
+                {
+                    if (appointment.Doctor == this)
+                    {
+                        Appointments.Add(appointment);
+                    }
+                }
+            }
+            return Appointments;
+        }
+        public static List<Doctor> ReadDoctors()
+        {
+            return new DAL().ReadDoctors();
         }
 
-        public static List<Appointment> ShowAppointments()
-        {
-            return null; //Dal methode hier
-        }
-
-        public void CancelAppointment()
-        {
-
-        }
     }
 
 }

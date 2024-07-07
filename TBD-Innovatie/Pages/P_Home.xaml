@@ -6,9 +6,56 @@
       xmlns:local="clr-namespace:TBD_Innovatie.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="P_Home">
+      Title="P_Home" Background="#74738E">
 
-    <Grid>
-        
-    </Grid>
+    <Canvas VerticalAlignment="Top" Height="73" Width="703" Margin="48,10,48,0">
+        <TextBlock Name="TekstTop" Text="WELKOM TERUG," FontFamily="Rubik One" FontSize="36" Foreground="#38384D" FontWeight="Black" Width="708" Height="73" Canvas.Left="10" Canvas.Top="27"/>
+        <TextBlock Name="NAAM" Text="NAAM"  FontFamily="Rubik One" FontSize="36" Foreground="#38384D" FontWeight="Black" Canvas.Left="10" Canvas.Top="67"/>
+        <Rectangle Name="WitBlok" HorizontalAlignment="Left" Height="162" Fill="#D9D9D9" Stroke="LightGray" VerticalAlignment="Center" Width="488" RadiusX="20" RadiusY="20" Canvas.Top="133"/>
+        <TextBlock Name="MijnAfspraken" Text="MIJN AFSPRAKEN" Height="28" Width="160" Foreground="#38384D" HorizontalAlignment="Center" Canvas.Left="19" Canvas.Top="142" VerticalAlignment="Top" FontFamily="Rubik One" FontWeight="Black" FontSize="17"/>
+
+        <Rectangle x:Name="WitBlok_Copy" Height="337" Fill="#D9D9D9" Stroke="LightGray" Width="197" RadiusX="20" RadiusY="20" Canvas.Top="67" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="521"/>
+        <Rectangle Name="Picture" Height="147" Width="151" Canvas.Left="543" Canvas.Top="89" Fill="#3C3C52" RadiusX="10" RadiusY="10" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Name="Worlds" Text="WORLDS: ###" Foreground="#38384C" FontSize="13" FontWeight="Bold" FontFamily="Rubik One" Canvas.Left="545" Canvas.Top="255" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock Name="RocketName" Text="RAKET: RAKET_NAAM" Foreground="#38384C" FontSize="13" FontWeight="Bold" FontFamily="Rubik One" Canvas.Left="545" Canvas.Top="295" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Rectangle x:Name="WitBlok_Copy1" Height="80" Fill="#D9D9D9" Stroke="LightGray" Width="488" RadiusX="20" RadiusY="20" Canvas.Top="324" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Name="VolgendeWereld" Text="VOLGENDE WERELD:" FontFamily="Rubik One" FontWeight="Black" Foreground="#38384C" FontSize="13" Canvas.Left="16" Canvas.Top="334" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Name="Datum" Text="DD/MM/YYYY" Foreground="#38384C" FontSize="32" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="16" Canvas.Top="355"/>
+        <Rectangle Name="Divider" Fill="#38384C" Height="50" Width="1" Canvas.Left="272" Canvas.Top="342"/>
+        <TextBlock Name="StarMap" Text="NAAR STARMAP" Foreground="#38384C" FontSize="14" FontWeight="Black" FontFamily="Rubik One" Canvas.Left="295" Canvas.Top="362" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Polygon Points="0,0 16,10, 0,20" Fill="#38384C" Canvas.Left="429" Canvas.Top="360" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+        <Rectangle Name="SearchBackground" RadiusX="15" RadiusY="15" Width="151" Height="40" Fill="#8CD9A1" Canvas.Left="543" Canvas.Top="349" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBox Name="SearchBox" Height="20" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Text="PROFIEL BEKIJKEN" FontFamily="Rubik One" FontSize="14" FontWeight="Bold" Foreground="#384D39" Canvas.Left="551" Canvas.Top="359" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.498,0"/>
+
+        <Rectangle x:Name="WitBlok_Copy2" Height="34" Fill="#D9D9D9" Stroke="LightGray" Width="197" RadiusX="20" RadiusY="20" Canvas.Top="20" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Canvas.Left="521">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Name="CoinBack" Fill="#9D7018" Height="22" Width="20" RadiusX="20" RadiusY="20" Canvas.Left="535" Canvas.Top="27" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Name="Coin" Fill="#DEBE16" Height="20" Width="20" RadiusX="20" RadiusY="20" Canvas.Left="535" Canvas.Top="27" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock Name="CoinTeller" Foreground="#38384D" Text="## MUNTEN" FontWeight="Black" FontSize="15" FontFamily="Rubik One" Canvas.Left="613" Canvas.Top="28"/>
+
+
+        <ListView Name="LvSearchPatient" Canvas.Top="170" HorizontalAlignment="Left" Height="33" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Width="463" Canvas.Left="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Datum" Width="70"/>
+                    <GridViewColumn Header="Tijd" Width="80"/>
+                    <GridViewColumn Header="Locatie" Width="100"/>
+                    <GridViewColumn Header="Patiënt" Width="100"/>
+                    <GridViewColumn Header="Opties" Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Canvas>
 </Page>

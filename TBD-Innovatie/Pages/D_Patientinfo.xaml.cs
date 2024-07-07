@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace TBD_Innovatie.Pages
 {
     /// <summary>
-    /// Interaction logic for D_Search.xaml
+    /// Interaction logic for D_Patientinfo.xaml
     /// </summary>
-    public partial class D_Search : Page
+    public partial class D_Patientinfo : Page
     {
-        public D_Search()
+        public D_Patientinfo()
         {
             InitializeComponent();
-        }
-
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void LvSearchPatient_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
